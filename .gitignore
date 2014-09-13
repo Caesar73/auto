@@ -30,6 +30,7 @@ node_modules
 /cache
 /output
 /.idea
+/node_modules
 build.sh
 *.bat
 *.psd
