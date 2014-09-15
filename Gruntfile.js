@@ -90,13 +90,14 @@ module.exports = function(grunt) {
         watch: {
             files: ['<%= jshint.files %>'],
             tasks: ['jshint', 'qunit']
-        }
+        },
+
+        // 任意数据。
+        my_property: 'whatever',
+        my_src_files: ['foo/*.js', 'bar/*.js']
 
     });
 
-    // 任意数据。
-    my_property: 'whatever',
-    my_src_files: ['foo/*.js', 'bar/*.js'],
 
     // Load the plugin that provides the "uglify,jshint,qunit,watch,concat" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
