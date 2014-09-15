@@ -106,6 +106,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
 
     // Default task(s).
-    grunt.registerTask('default', ['uglify']);
+    // 在命令行上输入"grunt test"，test task就会被执行。
+    grunt.registerTask('test', ['jshint', 'qunit']);
+
+    // 只需在命令行上输入"grunt"，就会执行default task
+    grunt.registerTask('default', ['build']);
+    grunt.registerTask('build', ['clean', 'jshint', 'concat', 'uglify']);
+    grunt.registerTask('dist', ['replace', 'build', 'copy']);
+
+    //grunt.loadTasks('tasks');
 
 };

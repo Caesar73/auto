@@ -24,20 +24,27 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
 
+# Vendors
+node_modules/
+
+# Build
+dist/
+/npm-debug.log
+
 # Users Environment Variables
 .lock-wscript
 
 /cache
 /output
 /.idea
-/node_modules
 build.sh
 *.bat
 *.psd
 test/
-npm-debug.log
 router.sublime-project
 router.sublime-workspace
 output.zip
 .DS_Store
 .swp
+
+
