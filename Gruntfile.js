@@ -51,26 +51,59 @@ module.exports = function(grunt) {
         },
 
         uglify: {
+
             // 这里是uglify任务的配置信息
             bar: {
               // uglify task "bar" target options and files go here.
             },
+
+            //
             options: {
+                // 此处定义的banner注释将插入到输出文件的顶部
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
                 src: 'src/<%= pkg.name %>.js',
                 dest: 'build/<%= pkg.name %>.min.js'
             }
+        },
+
+        qunit: {
+            files: ['test/**/*.html']
+        },
+
+        jshint: {
+            // define the files to lint
+            files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+
+            // configure JSHint (documented at http://www.jshint.com/docs/)
+            options: {
+                // more options here if you want to override JSHint defaults
+                globals: {
+                    jQuery: true,
+                    console: true,
+                    module: true
+                }
+            }
+        },
+
+        watch: {
+            files: ['<%= jshint.files %>'],
+            tasks: ['jshint', 'qunit']
         }
+
     });
 
     // 任意数据。
     my_property: 'whatever',
     my_src_files: ['foo/*.js', 'bar/*.js'],
 
-    // Load the plugin that provides the "uglify" task.
+    // Load the plugin that provides the "uglify,jshint,qunit,watch,concat" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     // Default task(s).
     grunt.registerTask('default', ['uglify']);
